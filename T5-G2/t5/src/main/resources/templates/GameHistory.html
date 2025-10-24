@@ -153,7 +153,7 @@
  */
 function fetchGameHistory(playerId, callback) {
     $.ajax({
-        url: `/games/player/${playerId}`, // URL dinamico
+        url: `/api/gamerepo/games/player/${playerId}`, // URL dinamico
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -213,7 +213,7 @@ function renderGameHistory(games) {
                 <div class="d-flex justify-content-between">
                     <div>
                         <h4 class="mb-1">${game.rounds[0].classUT}</h4>
-                        <p class="mb-0">${gameMode[game.gameMode]} - ${game.rounds[0].opponentType} - ${difficulty[game.rounds[0].opponentDifficulty]}</p>
+                        <p class="mb-0">${gameMode[game.gameMode]} - ${game.rounds[0].type} - ${difficulty[game.rounds[0].difficulty]}</p>
                         <small>${formattedDate}</small>
                     </div>
                     <div class="text-center p-3">

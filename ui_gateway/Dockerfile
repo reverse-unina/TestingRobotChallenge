@@ -10,7 +10,7 @@ COPY ./routes /etc/nginx/routes
 # Copia la cartella 'includes' per error.html e proxy.conf
 COPY ./includes/ /etc/nginx/includes/
 
-# Copio gli achievement nella direcotry che li serve
+# Copia gli achievement nella directory che li serve
 COPY ./images/ /var/www/html/images/
 
 # Espone la porta 80 per l'accesso HTTP

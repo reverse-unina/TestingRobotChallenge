@@ -1,7 +1,5 @@
 package com.example.db_setup.model.dto.gamification;
 
-import com.example.db_setup.model.GameProgress;
-import com.example.db_setup.model.Opponent;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -12,11 +10,13 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @ToString
+@AllArgsConstructor
 public class PlayerProgressDTO {
     private int experiencePoints;
     private Set<String> globalAchievements;
     private List<GameProgressDTO> gameProgressesDTO = new ArrayList<>();
 
+    /*
     public PlayerProgressDTO(int experiencePoints, Set<String> globalAchievements, List<GameProgress> gameProgresses) {
         this.experiencePoints = experiencePoints;
         this.globalAchievements = globalAchievements;
@@ -26,4 +26,6 @@ public class PlayerProgressDTO {
                     opponent.getDifficulty(), gameProgress.isWinner(), gameProgress.getAchievements()));
         }
     }
+
+     */
 }

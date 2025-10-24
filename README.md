@@ -22,24 +22,25 @@ TestingRobotChallenge is realized in the context of the ENACTEST Erasmus+ projec
 The platform is implemented as a browser-accessible web application based on a microservices architecture. Each component is containerized using Docker and exposes REST APIs, making the system easy to deploy, scale, and maintain.
 
 The platform consists of the following microservices:
-1. T1, which manages administrator-related functionalities, including class and robot management;
-2. T23, which handles login and registration for players;
-3. T4, which tracks match results and maintains player profiles and progress;
-4. T5, which manages gameplay logic and user interfaces for the player role.
-5. T7, which compiles the user-provided test code and computes coverage metrics using JaCoCo;
-6. T8, which compiles the user-provided test code and computes EvoSuite-based metrics.
+1. **T1**, which manages administrator-related functionalities, including class and robot management;
+2. **T23**, which handles user authentication (for both administrators and players) and all related user information;
+3. **T4**, which tracks the state of matches;
+4. **T5**, which manages gameplay logic and the related web interfaces;
+5. **T7**, which compiles the provided test code and calculates coverage metrics using **JaCoCo**;
+6. **T8**, which compiles the provided test code and calculates metrics based on **EvoSuite**.
+
 
 ### Data Persistence
 The system uses Docker volumes and containerized databases to persist data. Specifically:
-- T23 communicates with a PostgreSQL database for player authentication and registration;
-- T4 communicates with a MySQL database to store match data and player statistics;
-- T1 communicates with a MongoDB database to manage administrator accounts and to store references to the file paths of Java classes uploaded for testing.
-- The shared Docker volume VolumeT0 is used to store a copy of each Java class to be tested along with its associated robots, as well as a copy of each player’s compilation output, including the corresponding metrics.
+1. **T23** communicates with a **MySQL** database for user authentication and for storing all data associated with them;
+2. **T4** communicates with a **PostgreSQL** database to store match data;
+3. **T1** communicates with a **MongoDB** database to manage the file paths of Java classes uploaded for testing and their associated opponents;
+4. The shared Docker volume **VolumeT0** is used to store a copy of each Java class to be tested along with the related robots, as well as a copy of each player's compilation output, including the corresponding metrics.
 
 ### Support Services
 Two standalone components complement the system:
-1. T0, a self-contained component that can automatically generate JUnit 4 tests for a given Java class using Randoop and EvoSuite;
-2. db-backup, a utility service that performs regular backups (as dumps) of the PostgreSQL and MySQL databases used by T23 and T4.
+1. **T0**, a self-contained component that can automatically generate JUnit 4 tests for a given Java class using Randoop and EvoSuite;
+2. **db-backup**, a utility service that performs regular backups (as dumps) of the PostgreSQL and MySQL databases used by T23 and T4.
 
 These services can be invoked directly from the host machine when needed.
 
